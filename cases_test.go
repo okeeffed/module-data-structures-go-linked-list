@@ -1,6 +1,6 @@
 package linkedlist
 
-type testCase struct {
+type inserFirstTestCase struct {
 	description  string
 	input        Node
 	expectedLen  int
@@ -8,7 +8,7 @@ type testCase struct {
 	expectedNext bool
 }
 
-var insertFirstTestCases = []testCase{
+var insertFirstTestCases = []inserFirstTestCase{
 	{
 		description:  "insertFirst: should insert the correct node at the start head of the list",
 		input:        Node{data: 8},

@@ -41,6 +41,19 @@ func (l *List) insertFirst(n *Node) {
 	if l.head == nil {
 		l.head = n
 	} else {
+		temp := l.head
+		l.head = n
+		n.next = temp
+	}
+	l.size++
+	l.lock.Unlock()
+}
+
+func (l *List) insertLast(n *Node) {
+	l.lock.Lock()
+	if l.head == nil {
+		l.head = n
+	} else {
 		last := l.head
 		for {
 			if last.next == nil {
@@ -55,5 +68,22 @@ func (l *List) insertFirst(n *Node) {
 }
 
 func (l *List) getFirst() *Node {
-	return (*l).head
+	l.lock.Lock()
+	res := (*l).head
+	l.lock.Unlock()
+	return res
+}
+
+func (l *List) getLast() *Node {
+	l.lock.Lock()
+	last := l.head
+	for {
+		if last.next == nil {
+			break
+		}
+		last = last.next
+	}
+
+	l.lock.Unlock()
+	return last
 }
