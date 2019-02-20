@@ -53,3 +53,7 @@ func (l *List) insertFirst(n *Node) {
 	l.size++
 	l.lock.Unlock()
 }
+
+func (l *List) getFirst() *Node {
+	return (*l).head
+}

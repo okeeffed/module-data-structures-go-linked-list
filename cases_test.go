@@ -24,3 +24,20 @@ var insertFirstTestCases = []testCase{
 		expectedNext: true,
 	},
 }
+
+type getFirstTestCase struct {
+	description string
+	input       Node
+	expected    Node
+}
+
+var getFirstTestCases = []getFirstTestCase{
+	{
+		description: "getFirst: should fetch correct head with one element in the list",
+		input:       Node{data: 8},
+	},
+	{
+		description: "getFirst: should fetch nil for no elements in list",
+		input:       Node{data: 2, next: &Node{data: 5}},
+	},
+}

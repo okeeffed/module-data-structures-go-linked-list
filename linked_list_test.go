@@ -31,3 +31,20 @@ func TestInsertFirst(t *testing.T) {
 		t.Logf("PASS: Expected data %t and got %t", tt.expectedNext, hasNext)
 	}
 }
+
+func TestGetFirst(t *testing.T) {
+	for _, tt := range getFirstTestCases {
+		t.Log(tt.description)
+		l := List{}
+		l.insertFirst(&tt.input)
+
+		firstNode := l.getFirst()
+
+		if firstNode != &tt.input {
+			t.Errorf("FAIL: Return value expected %+v but got %+v", &tt.input, firstNode)
+			return
+		}
+
+		t.Logf("PASS: Expected %+v and got %+v", &tt.input, firstNode)
+	}
+}
