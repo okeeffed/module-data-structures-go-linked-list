@@ -20,6 +20,7 @@ Methods:
 package linkedlist
 
 import (
+	"errors"
 	"sync"
 )
 
@@ -93,3 +94,23 @@ func (l *List) clear() {
 		l.head = nil
 	}
 }
+
+func (l *List) getAt(index int) (*Node, error) {
+	if l.head == nil {
+		return nil, errors.New("No elements in list")
+	}
+
+	n := l.head
+	for i := 0; i <= index; i++ {
+		if i == index {
+			return n, nil
+		}
+		n = n.next
+	}
+
+	return nil, errors.New("Never made it to correct index")
+}
+
+// TODO: removeAt function
+
+// TODO: insertAt function
