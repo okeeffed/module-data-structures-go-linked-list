@@ -92,3 +92,26 @@ func TestGetFirst(t *testing.T) {
 		t.Logf("PASS: Expected %+v and got %+v", &tt.input, firstNode)
 	}
 }
+
+func TestClearList(t *testing.T) {
+	for _, tt := range insertFirstTestCases {
+		t.Log(tt.description)
+		l := List{}
+		n1 := Node{data: 12}
+		n2 := Node{data: 2}
+		n3 := Node{data: 8}
+
+		l.insertLast(&n1)
+		l.insertLast(&n2)
+		l.insertLast(&n3)
+
+		l.clear()
+
+		if l.head != nil {
+			t.Errorf("FAIL: Last list value expected nil but got %+v", l.head)
+			return
+		}
+
+		t.Logf("PASS: Last list value expected nil and got %+v", l.head)
+	}
+}

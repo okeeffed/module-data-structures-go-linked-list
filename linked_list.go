@@ -87,3 +87,9 @@ func (l *List) getLast() *Node {
 	l.lock.Unlock()
 	return last
 }
+
+func (l *List) clear() {
+	if l.head != nil {
+		l.head = nil
+	}
+}
