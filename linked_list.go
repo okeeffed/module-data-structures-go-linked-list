@@ -111,6 +111,42 @@ func (l *List) getAt(index int) (*Node, error) {
 	return nil, errors.New("Never made it to correct index")
 }
 
-// TODO: removeAt function
+func (l *List) removeAt(index int) error {
+	node := l.head
 
-// TODO: insertAt function
+	for i := 0; i < index; i++ {
+		if i == index-1 {
+			node.next = node.next.next
+			break
+		}
+
+		if node.next == nil {
+			return errors.New("Out of range")
+		}
+
+		node = node.next
+	}
+
+	return nil
+}
+
+func (l *List) insertAt(index int, n *Node) error {
+	node := l.head
+
+	for i := 0; i < index; i++ {
+		if i == index-1 {
+			tmp := node.next
+			node.next = n
+			n.next = tmp
+			break
+		}
+
+		if node.next == nil {
+			return errors.New("Out of range")
+		}
+
+		node = node.next
+	}
+
+	return nil
+}

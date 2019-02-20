@@ -125,9 +125,74 @@ func TestGetNodeAtIndexOfList(t *testing.T) {
 	}
 
 	if &n2 != res {
-		t.Errorf("FAIL: Last list value expected %+v but got %+v", &n2, res)
+		t.Errorf("FAIL: Get list value expected %+v but got %+v", &n2, res)
 		return
 	}
 
-	t.Logf("PASS: Last list value expected %+v and got %+v", &n2, res)
+	t.Logf("PASS: Get list value expected %+v and got %+v", &n2, res)
+}
+
+func TestRemoveNodeAtIndexOfList(t *testing.T) {
+	l := List{}
+	n1 := Node{data: 12}
+	n2 := Node{data: 2}
+	n3 := Node{data: 8}
+
+	l.insertLast(&n1)
+	l.insertLast(&n2)
+	l.insertLast(&n3)
+
+	err := l.removeAt(1)
+
+	res, getErr := l.getAt(1)
+
+	if err != nil {
+		t.Errorf("FAIL: Return error from GetNodeAtIndex")
+		return
+	}
+
+	if getErr != nil {
+		t.Errorf("FAIL: Return error from GetNodeAtIndex")
+		return
+	}
+
+	if &n3 != res {
+		t.Errorf("FAIL: Post-removed list value expected %+v but got %+v", &n3, res)
+		return
+	}
+
+	t.Logf("PASS: Post-removed list value expected %+v and got %+v", &n3, res)
+}
+
+func TestInsertNodeAtIndexOfList(t *testing.T) {
+	l := List{}
+	n1 := Node{data: 12}
+	n2 := Node{data: 2}
+	n3 := Node{data: 8}
+	n4 := Node{data: 123}
+
+	l.insertLast(&n1)
+	l.insertLast(&n2)
+	l.insertLast(&n3)
+
+	err := l.insertAt(1, &n4)
+
+	if err != nil {
+		t.Errorf("FAIL: Return error from GetNodeAtIndex")
+		return
+	}
+
+	res, getErr := l.getAt(1)
+
+	if getErr != nil {
+		t.Errorf("FAIL: Return error from GetNodeAtIndex")
+		return
+	}
+
+	if &n4 != res {
+		t.Errorf("FAIL: Insert list value expected %+v but got %+v", &n4, res)
+		return
+	}
+
+	t.Logf("PASS: Insert list value expected %+v and got %+v", &n4, res)
 }
